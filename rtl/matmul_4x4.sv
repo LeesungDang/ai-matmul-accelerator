@@ -7,14 +7,18 @@ module matmul_4x4 #(
     output logic signed [RESULT_WIDTH-1:0] C [4][4]
 );
 
+    integer acc;
+
     always_comb begin
         for (int i = 0; i < 4; i++) begin
             for (int j = 0; j < 4; j++) begin
-                C[i][j] = '0;
+                acc = 0;
 
                 for (int k = 0; k < 4; k++) begin
-                    C[i][j] += A[i][k] * B[k][j];
+                    acc = acc + (integer'(A[i][k]) * integer'(B[k][j]));
                 end
+
+                C[i][j] = acc;
             end
         end
     end
