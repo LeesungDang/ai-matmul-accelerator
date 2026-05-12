@@ -1,0 +1,4 @@
+build/
+waveforms/
+*.vcd
+.DS_Store
