@@ -52,3 +52,17 @@ This caught signed-arithmetic issues that fixed positive-only tests did not catc
 Key lesson:
 
 INT8 inputs require wider signed accumulation for matrix multiplication.
+
+## Sequential Randomized Verification
+
+The sequential FSM-based 4x4 matrix multiplier is also verified against Python-generated signed INT8 test vectors.
+
+Command:
+
+make matmul4seqrandom
+
+Result:
+
+RANDOMIZED 4x4 SEQUENTIAL MATMUL TESTS PASSED
+
+This confirms that both the combinational and sequential 4x4 designs match the Python/NumPy reference outputs across randomized signed INT8 inputs.
