@@ -121,3 +121,15 @@ RANDOMIZED 4x4 MATMUL TESTS PASSED
 ## Documentation
 
 See docs/architecture.md for design notes and architecture explanation.
+
+## Synthesis Results
+
+Both flattened 4x4 matrix multiply designs were synthesized with Yosys.
+
+| Design | Style | Yosys Cell Count | Main Tradeoff |
+|---|---:|---:|---|
+| matmul_4x4_flat | Combinational | 51,056 cells | High parallelism, larger gate count |
+| matmul_4x4_seq_flat | Sequential FSM | 5,134 cells | Lower gate count, more cycles |
+
+The sequential design uses about 10x fewer cells than the fully combinational design, demonstrating the hardware tradeoff between area and latency.
+
