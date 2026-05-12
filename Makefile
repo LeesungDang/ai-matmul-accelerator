@@ -1,4 +1,4 @@
-.PHONY: dot matmul2 matmul2array matmul4 matmul4random golden random4 vectors4 all clean
+.PHONY: dot matmul2 matmul2array matmul4 matmul4seq matmul4random golden random4 vectors4 all clean
 
 dot:
 	mkdir -p build waveforms
@@ -20,6 +20,11 @@ matmul4:
 	iverilog -g2012 -o build/matmul_4x4_tb tb/tb_matmul_4x4.sv rtl/matmul_4x4.sv
 	vvp build/matmul_4x4_tb
 
+matmul4seq:
+	mkdir -p build waveforms
+	iverilog -g2012 -o build/matmul_4x4_seq_tb tb/tb_matmul_4x4_seq.sv rtl/matmul_4x4_seq.sv
+	vvp build/matmul_4x4_seq_tb
+
 matmul4random: vectors4
 	mkdir -p build waveforms
 	iverilog -g2012 -o build/matmul_4x4_random_tb tb/tb_matmul_4x4_random.sv rtl/matmul_4x4.sv
@@ -36,7 +41,7 @@ random4:
 vectors4:
 	python3 python/generate_matmul4_vectors.py
 
-all: dot matmul2 matmul2array matmul4 golden random4 matmul4random
+all: dot matmul2 matmul2array matmul4 matmul4seq golden random4 matmul4random
 
 clean:
 	rm -rf build/*
