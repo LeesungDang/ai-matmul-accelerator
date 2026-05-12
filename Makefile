@@ -1,4 +1,4 @@
-.PHONY: dot matmul2 matmul2array matmul4 golden clean
+.PHONY: dot matmul2 matmul2array matmul4 golden all clean
 
 dot:
 	mkdir -p build waveforms
@@ -23,6 +23,9 @@ matmul4:
 golden:
 	python3 python/golden_dot_product.py
 	python3 python/golden_matmul_2x2.py
+	python3 python/golden_matmul_4x4.py
+
+all: dot matmul2 matmul2array matmul4 golden
 
 clean:
 	rm -rf build/*
