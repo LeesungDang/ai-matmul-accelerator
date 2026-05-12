@@ -1,70 +1,123 @@
 # AI Matrix Multiply Accelerator
 
-A SystemVerilog hardware design project for building and verifying a matrix multiplication accelerator, starting from a dot-product compute unit and expanding toward a pipelined INT8 accelerator for AI inference-style workloads.
+A SystemVerilog RTL project that builds from a dot-product unit to 2x2 and 4x4 matrix multiplication accelerators, with Python/NumPy golden-model verification and randomized RTL testing.
 
-## Current Milestone
+This project practices skills relevant to FPGA engineering, ASIC/RTL design, AI hardware acceleration, computer architecture, and digital verification.
 
-Implemented and simulated a 4-element signed dot-product module:
+## Current Features
 
-result = a0*b0 + a1*b1 + a2*b2 + a3*b3
-
-Test case:
-
-A = [1, 2, 3, 4]
-B = [5, 6, 7, 8]
-
-Expected result = 70
-Simulation result = 70
-TEST PASSED
-
-## Project Goals
-
-- Design reusable SystemVerilog RTL modules
-- Build a dot-product compute unit
-- Expand to 2x2 and 4x4 matrix multiplication
-- Add Python/NumPy golden-model verification
-- Add randomized test generation
-- Add pipelining and cycle-count benchmarking
-- Document latency, throughput, and hardware tradeoffs
+- 4-element signed dot-product module
+- 2x2 matrix multiplication module
+- Array-based 2x2 matrix multiplication module
+- 4x4 combinational matrix multiplication module
+- 4x4 sequential FSM-based matrix multiplication accelerator
+- Python/NumPy golden models
+- Randomized INT8 test-vector generation
+- Randomized RTL verification against expected outputs
+- Makefile-based simulation workflow
 
 ## Repo Structure
 
-rtl/          SystemVerilog hardware modules
-tb/           SystemVerilog testbenches
-python/       Python golden models and test generation
-docs/         Architecture and timing notes
-waveforms/    Simulation waveform outputs
-scripts/      Helper scripts
-build/        Simulation build outputs
+rtl/          SystemVerilog RTL modules  
+tb/           SystemVerilog testbenches  
+python/       Python golden models and test-vector generators  
+docs/         Architecture and design notes  
+scripts/      Helper scripts  
+build/        Generated simulation builds, ignored by Git  
+waveforms/    Generated waveform files, ignored by Git  
 
-## How to Run Current Simulation
+## Main Modules
 
-From the project root:
+### Dot Product
 
-iverilog -g2012 -o build/dot_product_tb tb/tb_dot_product.sv rtl/dot_product.sv
-vvp build/dot_product_tb
+Computes:
 
-Expected output:
+result = a0*b0 + a1*b1 + a2*b2 + a3*b3
 
-VCD info: dumpfile waveforms/dot_product.vcd opened for output.
-Dot product result = 70
-TEST PASSED
+This is the core operation behind matrix multiplication and AI inference workloads.
+
+### 4x4 Combinational Matrix Multiply
+
+Computes all 16 output values of:
+
+C = A x B
+
+using nested loop logic.
+
+### 4x4 Sequential Matrix Multiply
+
+A clocked FSM-based design with:
+
+clk, rst, start, done
+
+It computes one multiply-accumulate step per cycle, showing the tradeoff between hardware resource usage and cycle latency.
+
+## Verification
+
+The project uses:
+
+1. Fixed SystemVerilog testbenches
+2. Python/NumPy golden models
+3. Randomized INT8 test-vector generation
+4. RTL comparison against expected outputs
+
+Randomized testing caught signed-arithmetic issues that fixed positive-only tests missed.
+
+## How to Run
+
+Run the full test suite:
+
+make all
+
+Run individual tests:
+
+make dot  
+make matmul2  
+make matmul2array  
+make matmul4  
+make matmul4seq  
+make matmul4random  
+make golden  
+
+Clean generated files:
+
+make clean
+
+## Example Passing Output
+
+Dot product result = 70  
+TEST PASSED  
+
+C =  
+[250 260 270 280]  
+[618 644 670 696]  
+[986 1028 1070 1112]  
+[1354 1412 1470 1528]  
+TEST PASSED  
+
+RANDOMIZED 4x4 MATMUL TESTS PASSED
 
 ## Tools Used
 
 - SystemVerilog
 - Icarus Verilog
-- GTKWave
-- Python / NumPy
-- Git / GitHub
+- Python
+- NumPy
+- Make
+- Git/GitHub
 
-## Learning Focus
+## Key Concepts Demonstrated
 
-This project develops skills relevant to:
+- RTL design
+- Testbench development
+- Signed INT8 arithmetic
+- Wider signed accumulation
+- Matrix multiplication datapaths
+- FSM-based sequential hardware
+- Python golden-model verification
+- Randomized RTL testing
+- Area vs latency vs throughput tradeoffs
 
-- FPGA engineering
-- ASIC / RTL design
-- AI hardware acceleration
-- Computer architecture
-- Digital design verification
-- Hardware/software co-design
+## Documentation
+
+See docs/architecture.md for design notes and architecture explanation.
