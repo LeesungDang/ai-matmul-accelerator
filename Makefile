@@ -12,6 +12,7 @@ matmul2:
 
 golden:
 	python3 python/golden_dot_product.py
+	python3 python/golden_matmul_2x2.py
 
 clean:
 	rm -rf build/*
