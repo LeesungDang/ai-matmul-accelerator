@@ -1,4 +1,4 @@
-.PHONY: dot matmul2 matmul2array matmul4 golden all clean
+.PHONY: dot matmul2 matmul2array matmul4 golden random4 all clean
 
 dot:
 	mkdir -p build waveforms
@@ -25,8 +25,12 @@ golden:
 	python3 python/golden_matmul_2x2.py
 	python3 python/golden_matmul_4x4.py
 
-all: dot matmul2 matmul2array matmul4 golden
+random4:
+	python3 python/generate_matmul4_tests.py
+
+all: dot matmul2 matmul2array matmul4 golden random4
 
 clean:
 	rm -rf build/*
 	rm -rf waveforms/*
+	rm -f python/matmul4_tests.txt
