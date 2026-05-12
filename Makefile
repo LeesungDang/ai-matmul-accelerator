@@ -1,4 +1,4 @@
-.PHONY: dot matmul2 golden clean
+.PHONY: dot matmul2 matmul2array golden clean
 
 dot:
 	mkdir -p build waveforms
@@ -9,6 +9,11 @@ matmul2:
 	mkdir -p build waveforms
 	iverilog -g2012 -o build/matmul_2x2_tb tb/tb_matmul_2x2.sv rtl/matmul_2x2.sv
 	vvp build/matmul_2x2_tb
+
+matmul2array:
+	mkdir -p build waveforms
+	iverilog -g2012 -o build/matmul_2x2_array_tb tb/tb_matmul_2x2_array.sv rtl/matmul_2x2_array.sv
+	vvp build/matmul_2x2_array_tb
 
 golden:
 	python3 python/golden_dot_product.py
