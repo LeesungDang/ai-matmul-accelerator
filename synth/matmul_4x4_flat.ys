@@ -1,0 +1,10 @@
+read_verilog -sv rtl/matmul_4x4_flat.sv
+hierarchy -top matmul_4x4_flat
+proc
+opt
+fsm
+opt
+techmap
+opt
+stat
+write_verilog synth/matmul_4x4_flat_netlist.v
