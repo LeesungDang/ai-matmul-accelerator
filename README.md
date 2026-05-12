@@ -133,3 +133,10 @@ Both flattened 4x4 matrix multiply designs were synthesized with Yosys.
 
 The sequential design uses about 10x fewer cells than the fully combinational design, demonstrating the hardware tradeoff between area and latency.
 
+
+## Project Summary
+
+A recruiter-facing summary with resume bullets and interview talking points is available here:
+
+docs/project_summary.md
+
