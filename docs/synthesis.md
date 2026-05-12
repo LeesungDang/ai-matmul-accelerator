@@ -10,6 +10,10 @@ To support synthesis, a flattened module was added:
 
 rtl/matmul_4x4_flat.sv
 
+A sequential flattened version is also available:
+
+rtl/matmul_4x4_seq_flat.sv
+
 This version uses packed flat input/output buses:
 
 A_flat  
@@ -24,10 +28,16 @@ make sure the synth directory exists, then:
 
 yosys -s synth/matmul_4x4_flat.ys
 
+For the sequential flattened version:
+
+yosys -s synth/matmul_4x4_seq_flat.ys
+
 ## Generated Files
 
 synth/matmul_4x4_flat.ys  
 synth/matmul_4x4_flat_netlist.v  
+synth/matmul_4x4_seq_flat.ys  
+synth/matmul_4x4_seq_flat_netlist.v  
 
 ## Yosys Result Summary
 
@@ -67,6 +77,29 @@ Sequential design:
 - fewer compute resources
 - more cycles
 - more realistic accelerator control structure
+
+## Sequential Flattened Yosys Result Summary
+
+Top module:
+
+matmul_4x4_seq_flat
+
+Statistics from Yosys:
+
+Wires: 951  
+Wire bits: 29099  
+Ports: 7  
+Port bits: 580  
+Cells: 5134  
+
+Cell breakdown:
+
+AND gates: 980  
+DFFE cells: 349  
+MUX cells: 2698  
+NOT gates: 109  
+OR gates: 787  
+XOR gates: 211  
 
 ## Key Lesson
 
