@@ -140,3 +140,16 @@ A recruiter-facing summary with resume bullets and interview talking points is a
 
 docs/project_summary.md
 
+
+## OpenLane Physical Design
+
+The sequential flat accelerator was run through the OpenLane SKY130 RTL-to-GDS flow.
+
+See:
+
+docs/openlane.md
+
+Committed reports:
+
+openlane/matmul_4x4_seq_flat/
+
