@@ -11,6 +11,7 @@ This project practices skills relevant to FPGA engineering, ASIC/RTL design, AI 
 - Array-based 2x2 matrix multiplication module
 - 4x4 combinational matrix multiplication module
 - 4x4 sequential FSM-based matrix multiplication accelerator
+- 4x4 MMIO-wrapped sequential matrix multiplication accelerator
 - Python/NumPy golden models
 - Randomized INT8 test-vector generation
 - Randomized RTL verification against expected outputs
@@ -76,6 +77,7 @@ make matmul2
 make matmul2array  
 make matmul4  
 make matmul4seq  
+make matmul4mmio  
 make matmul4random  
 make golden  
 
@@ -122,6 +124,10 @@ RANDOMIZED 4x4 MATMUL TESTS PASSED
 
 See docs/architecture.md for design notes and architecture explanation.
 
+For the memory-mapped accelerator interface and FSM behavior, see:
+
+[docs/mmio_accelerator.md](docs/mmio_accelerator.md)
+
 ## Synthesis Results
 
 Both flattened 4x4 matrix multiply designs were synthesized with Yosys.
@@ -152,6 +158,4 @@ docs/openlane.md
 Committed reports:
 
 openlane/matmul_4x4_seq_flat/
-
-
 
