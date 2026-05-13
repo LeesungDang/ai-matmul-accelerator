@@ -154,15 +154,4 @@ Committed reports:
 openlane/matmul_4x4_seq_flat/
 
 
-## OpenLane Physical Design
-
-The sequential flat accelerator was run through the OpenLane SKY130 RTL-to-GDS flow.
-
-See:
-
-docs/openlane.md
-
-Committed reports:
-
-openlane/matmul_4x4_seq_flat/
 
