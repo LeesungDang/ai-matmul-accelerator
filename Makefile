@@ -1,4 +1,4 @@
-.PHONY: dot matmul2 matmul2array matmul4 matmul4seq matmul4mmio matmul4mmiorandom matmul4random matmul4seqrandom golden random4 vectors4 all clean
+.PHONY: dot matmul2 matmul2array matmul4 matmul4seq matmul4mmio matmul4mmiorandom matmul4random matmul4seqrandom golden random4 vectors4 all clean regression
 
 dot:
 	mkdir -p build waveforms
@@ -57,6 +57,9 @@ vectors4:
 	python3 python/generate_matmul4_vectors.py
 
 all: dot matmul2 matmul2array matmul4 matmul4seq matmul4mmio golden random4 matmul4random matmul4seqrandom matmul4mmiorandom
+
+regression:
+	python3 scripts/run_regression.py
 
 clean:
 	rm -rf build/*
