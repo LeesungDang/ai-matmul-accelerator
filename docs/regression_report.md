@@ -1,6 +1,6 @@
 # Regression Report
 
-Generated: 2026-05-14T14:54:18.680938-04:00
+Generated: 2026-05-14T15:03:13.923074-04:00
 
 ## Test Summary
 
@@ -10,6 +10,7 @@ Generated: 2026-05-14T14:54:18.680938-04:00
 | make all | `make all` | PASS | Runs all core RTL tests, Python golden models, and randomized MMIO verification. |
 | yosys matmul_4x4_flat.ys | `yosys -s /Users/leesungdang/Documents/ai-matmul-accelerator/synth/matmul_4x4_flat.ys` | PASS | Synthesis run driven by an existing Yosys script. |
 | yosys matmul_4x4_seq_flat.ys | `yosys -s /Users/leesungdang/Documents/ai-matmul-accelerator/synth/matmul_4x4_seq_flat.ys` | PASS | Synthesis run driven by an existing Yosys script. |
+| yosys matmul_4x4_mmio.ys | `yosys -s /Users/leesungdang/Documents/ai-matmul-accelerator/synth/matmul_4x4_mmio.ys` | PASS | Synthesis run driven by an existing Yosys script. |
 
 ## Verification Status
 
@@ -21,6 +22,7 @@ Generated: 2026-05-14T14:54:18.680938-04:00
 |---|---|---|---|---|---|---|
 | `matmul_4x4_flat.ys` | PASS | `matmul_4x4_flat` | 11163 | 213328 | 51056 | $_AND_=23888, $_XOR_=19152, $_OR_=8016 |
 | `matmul_4x4_seq_flat.ys` | PASS | `matmul_4x4_seq_flat` | 951 | 29099 | 5134 | $_MUX_=2698, $_AND_=980, $_OR_=787, $_DFFE_PP0P_=349, $_XOR_=211, $_NOT_=109 |
+| `matmul_4x4_mmio.ys` | PASS | `matmul_4x4_mmio` | 3079 | 7618 | 6843 | $_AND_=2027, $_MUX_=1853, $_OR_=1821, $_DFFE_PP0P_=809, $_XOR_=224, $_NOT_=109 |
 
 ## Interpretation
 

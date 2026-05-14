@@ -262,6 +262,7 @@ def main() -> int:
     synthesis_scripts = [
         REPO_ROOT / "synth" / "matmul_4x4_flat.ys",
         REPO_ROOT / "synth" / "matmul_4x4_seq_flat.ys",
+        REPO_ROOT / "synth" / "matmul_4x4_mmio.ys",
     ]
 
     for name, command in command_plan:
