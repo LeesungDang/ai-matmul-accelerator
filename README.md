@@ -159,3 +159,18 @@ Committed reports:
 
 openlane/matmul_4x4_seq_flat/
 
+
+## Automated Regression Flow
+
+This project includes an automated regression/reporting script:
+
+scripts/run_regression.py
+
+Run:
+
+make regression
+
+The regression flow runs the full RTL verification suite, Yosys synthesis scripts, parses synthesis metrics, and generates:
+
+docs/regression_report.md
+
