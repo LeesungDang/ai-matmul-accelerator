@@ -174,3 +174,17 @@ The regression flow runs the full RTL verification suite, Yosys synthesis script
 
 docs/regression_report.md
 
+
+## Architecture Comparison
+
+The project now compares three 4x4 accelerator architectures:
+
+| Design | Style | Yosys Cell Count | Main Point |
+|---|---|---:|---|
+| matmul_4x4_flat | Combinational | 51,056 | High parallelism, high area |
+| matmul_4x4_seq_flat | Sequential FSM | 5,134 | Lower area, wide matrix IO |
+| matmul_4x4_mmio | Memory-mapped accelerator | 6,843 | Realistic accelerator-style interface |
+
+The MMIO version is the most realistic IP-style design because inputs and outputs are accessed through a compact address/data interface rather than exposed as large top-level matrix buses.
+
+See docs/regression_report.md and docs/results.md for details.

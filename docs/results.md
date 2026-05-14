@@ -66,3 +66,15 @@ Result:
 RANDOMIZED 4x4 SEQUENTIAL MATMUL TESTS PASSED
 
 This confirms that both the combinational and sequential 4x4 designs match the Python/NumPy reference outputs across randomized signed INT8 inputs.
+
+## Updated Synthesis Comparison
+
+The automated regression flow now synthesizes three accelerator architectures with Yosys:
+
+| Design | Style | Yosys Cell Count | Notes |
+|---|---|---:|---|
+| matmul_4x4_flat | Fully combinational flat design | 51,056 | Highest parallelism, largest gate count |
+| matmul_4x4_seq_flat | Sequential FSM flat design | 5,134 | Lowest cell count, but exposes wide matrix buses |
+| matmul_4x4_mmio | Memory-mapped sequential accelerator | 6,843 | More realistic interface with internal A/B/C storage and MMIO control |
+
+The MMIO design uses more cells than the flat sequential version because it includes internal storage, address decoding, and control/read-write logic. However, it is more realistic as accelerator IP because software or a processor can load inputs, start computation, and read results through a compact memory-mapped interface instead of exposing hundreds of matrix pins.
